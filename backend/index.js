@@ -6,6 +6,7 @@ const { connectDatabase } = require('./database')
 const app = express()
 app.use(cors())
 app.use(express.json())
+app.use(dataForVerification)
 
 
 const PORT = process.env.PORT || 8080
@@ -15,3 +16,10 @@ connectDatabase().then(() => {
         })
     }
 )
+
+async function dataForVerification(req,res,next){
+    req.context = {
+
+    }
+    next()
+}
